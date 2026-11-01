@@ -412,7 +412,9 @@ function App() {
   const [peopleCount, setPeopleCount] = useState(0)
   const [dataError, setDataError] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [activePage, setActivePage] = useState<'dashboard' | 'history'>('dashboard')
+  const [activePage, setActivePage] = useState<
+  'dashboard' | 'history' | 'keys'
+  >('dashboard')
 
   const isLoggedIn = user !== null
 
@@ -618,7 +620,14 @@ function App() {
           >
             HISTÓRICO
           </button>
-          <button type="button">CHAVES</button>
+          <button
+            className={activePage === 'keys' ? 'active' : ''}
+            type="button"
+            onClick={() => setActivePage('keys')}
+            aria-current={activePage === 'keys' ? 'page' : undefined}
+            >
+            CHAVES
+          </button>
         </nav>
 
         {activePage === 'history' ? <HistoryPage /> : (
